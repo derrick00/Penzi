@@ -1,0 +1,23 @@
+services:
+  backend:
+    image: derrick00/penzibackend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./backend/db.sqlite3
+
+  admin:
+    image: derrick00/penziadmin
+    ports:
+      - "3001:3001"
+    depends_on:
+      - derrick00/penzibackend
+
+
+  frontend:
+    image: derrick00/penzifrontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - derrick00/penzibackend
+

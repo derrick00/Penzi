@@ -1,0 +1,13 @@
+FROM python:3.10.9-alpine
+
+WORKDIR /backend
+
+COPY . ./
+
+RUN pip install -r requirements.txt
+
+ENV DATABASE_URL=sqlite:///./sql_app.db
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0"], 
